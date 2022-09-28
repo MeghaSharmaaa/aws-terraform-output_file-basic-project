@@ -6,7 +6,7 @@ provider "aws"{
 data "aws_subnet" "selected" {
   filter {
     name   = "tag:Name"
-    values = ["subnet_1"]
+    values = [var.subnet_name]
   } 
 }
 
@@ -18,4 +18,13 @@ resource "aws_instance" "ec2_1" {
   tags = {
     Name = "HelloWorld"
   }
+} 
+
+########## Define Variable ############
+
+variable "subnet_name"{
+  description = "This is the name of the subnet"
+  type = string
+  default = "subnet_1"
 }
+
